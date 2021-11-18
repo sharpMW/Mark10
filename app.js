@@ -2,6 +2,7 @@ const billAmount = document.querySelector("#bill-amount");
 const paidAmount = document.querySelector("#paid-amount");
 const checkButton = document.querySelector(".check");
 const message = document.querySelector("#error-message");
+const table = document.querySelector(".change-table");
 const noOfNotes = document.querySelectorAll(".no-of-notes");
 const availableNotes = [2000, 500, 100, 20, 10, 5, 1];
 
@@ -9,10 +10,13 @@ const availableNotes = [2000, 500, 100, 20, 10, 5, 1];
 checkButton.addEventListener("click", function validateAmount() { 
 
     hideMessage();
+    hideTable();
     if (billAmount.value > 0) { 
         if (Number(paidAmount.value) >= Number(billAmount.value)) { 
                 const returnAmount = Number(paidAmount.value) - Number(billAmount.value);
                 calculateChange(returnAmount);
+                showTable();
+                
         } else { 
             showMessage("Bill is not paid");
         }
@@ -38,4 +42,11 @@ function calculateChange(returnAmount) {
 
 function hideMessage() { 
     message.style.display = "none";
+}
+function hideTable() { 
+    table.style.display = "none";
+} 
+
+function showTable() { 
+    table.style.display = "block";
 }
